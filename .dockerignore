@@ -1,0 +1,15 @@
+
+# Ignorer les fichiers inutiles
+target/
+.git/
+.gitignore
+.idea/
+.vscode/
+*.iml
+*.log
+.DS_Store
+node_modules/
+*.md
+README.md
+.mvn/wrapper/maven-wrapper.jar
+EOF

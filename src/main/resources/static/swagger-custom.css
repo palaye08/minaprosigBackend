@@ -1,0 +1,44 @@
+/* Correction de l'affichage vertical des endpoints */
+.opblock-summary-path {
+    display: inline-block !important;
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
+    word-break: break-all !important;
+    white-space: normal !important;
+}
+
+.opblock-summary-path__deprecated {
+    display: inline-block !important;
+    writing-mode: horizontal-tb !important;
+}
+
+/* Amélioration générale de l'affichage */
+.opblock-summary {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+}
+
+.opblock-summary-method {
+    min-width: 80px !important;
+}
+
+.opblock-summary-path {
+    flex: 1 !important;
+    max-width: 100% !important;
+}
+
+/* Correction pour les descriptions */
+.opblock-description-wrapper,
+.opblock-external-docs-wrapper,
+.opblock-title_normal {
+    word-wrap: break-word !important;
+    white-space: normal !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .opblock-summary {
+        flex-wrap: wrap !important;
+    }
+}

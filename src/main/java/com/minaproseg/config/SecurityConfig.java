@@ -31,8 +31,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/api/auth/**",
-                                // Endpoints Swagger à autoriser
+                                "/api/auth/**",  // ✅ DÉCOMMENTÉ - Permet l'accès à /register et /login
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
