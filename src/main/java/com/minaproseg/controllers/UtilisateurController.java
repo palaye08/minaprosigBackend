@@ -5,9 +5,11 @@ import com.minaproseg.dtos.AuthenticationResponse;
 import com.minaproseg.services.AuthenticationService;
 import com.minaproseg.services.UtilisateurService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -32,12 +34,12 @@ public class UtilisateurController {
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'COACH')")
     @Operation(summary = "Liste des utilisateurs avec pagination")
+    @PageableAsQueryParam
     public ResponseEntity<ApiResponse<PageResponse<UtilisateurSimpleDTO>>> getAllUtilisateurs(
-            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
+            @Parameter(hidden = true) @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
         PageResponse<UtilisateurSimpleDTO> response = utilisateurService.getAllUtilisateurs(pageable);
         return ResponseEntity.ok(ApiResponse.success(response, "Liste des utilisateurs"));
     }
-
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'COACH', 'BENEFICIAIRE')")
     @Operation(summary = "Détails d'un utilisateur")

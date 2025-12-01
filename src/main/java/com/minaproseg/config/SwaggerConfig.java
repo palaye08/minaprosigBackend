@@ -30,12 +30,12 @@ import org.springframework.context.annotation.Configuration;
         ),
         servers = {
                 @Server(
-                        url = "https://minaprosigbackend-2.onrender.com",
-                        description = "Serveur de production"
-                ),
-                @Server(
                         url = "http://localhost:8080",
                         description = "Serveur de développement"
+                ),
+                @Server(
+                        url = "https://minaprosigbackend-2.onrender.com",
+                        description = "Serveur de production"
                 )
         },
         security = @SecurityRequirement(name = "bearerAuth")
