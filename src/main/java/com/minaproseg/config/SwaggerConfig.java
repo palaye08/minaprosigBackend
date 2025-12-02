@@ -30,7 +30,7 @@ import org.springframework.context.annotation.Configuration;
         ),
         servers = {
                 @Server(
-                        url = "https://minaprosigbackend-2.onrender.com",
+                        url = "https://minaprosigbackend-3.onrender.com",
                         description = "Serveur de production"
                 ),
                 @Server(
