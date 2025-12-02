@@ -8,8 +8,9 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
-import io.swagger.v3.oas.annotations.servers.Server;
+import io.swagger.v3.oas.models.OpenAPI;
 import org.springdoc.core.models.GroupedOpenApi;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -28,16 +29,6 @@ import org.springframework.context.annotation.Configuration;
                         url = "https://www.apache.org/licenses/LICENSE-2.0.html"
                 )
         ),
-        servers = {
-                @Server(
-                        url = "http://localhost:8080",
-                        description = "Serveur de développement"
-                ),
-                @Server(
-                        url = "https://minaprosigbackend-2.onrender.com",
-                        description = "Serveur de production"
-                )
-        },
         security = @SecurityRequirement(name = "bearerAuth")
 )
 @SecurityScheme(
@@ -49,6 +40,17 @@ import org.springframework.context.annotation.Configuration;
         in = SecuritySchemeIn.HEADER
 )
 public class SwaggerConfig {
+
+    @Value("${server.url:https://minaprosigbackend-2.onrender.com}")
+    private String serverUrl;
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .addServersItem(new io.swagger.v3.oas.models.servers.Server()
+                        .url(serverUrl)
+                        .description("Serveur actuel"));
+    }
 
     @Bean
     public GroupedOpenApi publicApi() {
